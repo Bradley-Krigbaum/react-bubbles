@@ -27,7 +27,6 @@ const ColorList = ({ colors, updateColors }) => {
       })
       .catch(err => console.log('bk: ColorList.js: saveEdit: error: ', err));
 
-      window.location.reload(false);
   };
 
   const deleteColor = color => {
