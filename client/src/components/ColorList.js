@@ -17,24 +17,21 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is it saved right now?
 
     axiosWithAuth()
       .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, 
         { ...colorToEdit, color: colorToEdit.color, code: colorToEdit.code })
       .then(res => {
         console.log('bk: ColorList.js: saveEdit: response: ', res)
-        updateColors(res)
+        updateColors(res.data)
       })
       .catch(err => console.log('bk: ColorList.js: saveEdit: error: ', err));
 
+      window.location.reload(false);
   };
 
   const deleteColor = color => {
 
-    // console.log('color.id: ', color.id)
     axiosWithAuth()
       .delete(`http://localhost:5000/api/colors/${color.id}`)
       .then(res => {
